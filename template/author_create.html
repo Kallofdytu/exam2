@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Добавить автора{% endblock %}
+{% block content %}
+<section class="auth-section" style="display:flex;align-items:center;justify-content:center;min-height:80vh;">
+    <div class="auth-container" style="width:100%;max-width:400px;">
+        <div class="auth-card" style="background:rgba(31,64,104,0.8);padding:40px;border-radius:16px;box-shadow:0 0 24px #4ef3ff22;">
+            <h1 style="color:#4ef3ff;font-family:'Cormorant Garamond',serif;font-size:2.2rem;margin-bottom:1.5rem;">Добавить автора</h1>
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label style="color:#eaf6fb;font-weight:600;">ФИО автора</label>
+                    <input type="text" name="full_name" required class="form-control" placeholder="Введите ФИО" style="width:100%;padding:12px;border:1px solid #23395d;border-radius:7px;font-size:15px;background:#162447;color:#eaf6fb;">
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label style="color:#eaf6fb;font-weight:600;">Биография</label>
+                    <textarea name="bio" required class="form-control" placeholder="Краткая биография" style="width:100%;padding:12px;border:1px solid #23395d;border-radius:7px;font-size:15px;background:#162447;color:#eaf6fb;min-height:80px;"></textarea>
+                </div>
+                <button type="submit" class="cta-btn" style="width:100%;margin-top:10px;">Добавить</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

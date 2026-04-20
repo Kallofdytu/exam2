@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Email Verification{% endblock %}
+
+{% block content %}
+<section class="auth-section" style="display:flex;align-items:center;justify-content:center;min-height:80vh;">
+    <div class="auth-container" style="width:100%;max-width:500px;">
+        <div class="auth-card" style="background:rgba(31,64,104,0.85);padding:40px 32px 32px 32px;border-radius:16px;box-shadow:0 0 24px #4ef3ff22;">
+            {% if success %}
+                <div class="success-icon" style="font-size:2.5rem;color:#1fd1a1;text-align:center;margin-bottom:10px;">✓</div>
+                <h1 style="color:#4ef3ff;font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:1rem;text-align:center;">Email Verified Successfully!</h1>
+                <p class="subtitle" style="color:#eaf6fb;text-align:center;margin-bottom:1.2rem;">{{ success }}</p>
+                <p class="verification-description" style="color:#b2becd;text-align:center;margin-bottom:1.5rem;">Your email has been confirmed. You can now log in to your account and start using <span style="color:#4ef3ff;">Exam2</span>.</p>
+                <div style="display:flex;gap:12px;justify-content:center;">
+                    <a href="{% url 'login' %}" class="cta-btn" style="min-width:140px;">Go to Login</a>
+                    <a href="{% url 'register' %}" class="cta-btn ghost" style="min-width:180px;">Register Another Account</a>
+                </div>
+            {% elif error %}
+                <div class="error-icon" style="font-size:2.5rem;color:#ff6b81;text-align:center;margin-bottom:10px;">✗</div>
+                <h1 style="color:#ff6b81;font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:1rem;text-align:center;">Verification Failed</h1>
+                <p class="subtitle" style="color:#eaf6fb;text-align:center;margin-bottom:1.2rem;">{{ error }}</p>
+                <p class="verification-description" style="color:#b2becd;text-align:center;margin-bottom:1.5rem;">The verification link is invalid or has expired. Please try registering again or contact support.</p>
+                <div style="display:flex;gap:12px;justify-content:center;">
+                    <a href="{% url 'register' %}" class="cta-btn" style="min-width:140px;">Register Again</a>
+                    <a href="{% url 'login' %}" class="cta-btn ghost" style="min-width:140px;">Back to Login</a>
+                </div>
+                <div class="verification-help" style="margin-top:1.5rem;text-align:center;color:#b2becd;">
+                    <p><strong>Having trouble?</strong> Check your spam folder or use a different email address.</p>
+                </div>
+            {% else %}
+                <div class="loading-icon" style="font-size:2.5rem;color:#4ef3ff;text-align:center;margin-bottom:10px;">⏳</div>
+                <h1 style="color:#4ef3ff;font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:1rem;text-align:center;">Verifying Your Email</h1>
+                <p class="verification-description" style="color:#b2becd;text-align:center;margin-bottom:1.5rem;">Please wait while we verify your email address...</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="features" id="services" style="margin-top:40px;">
+    <div class="container">
+        <h2 style="color:#4ef3ff;text-align:center;font-size:1.6rem;margin-bottom:2rem;">Why Verify Your Email?</h2>
+        <div class="features-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+            <div class="feature-card" style="background:rgba(22,36,71,0.8);border-radius:12px;padding:24px;text-align:center;box-shadow:0 0 12px #4ef3ff11;">
+                <div class="feature-icon" style="font-size:2rem;">🔒</div>
+                <h3 style="color:#1fd1a1;margin:10px 0 6px 0;">Account Security</h3>
+                <p style="color:#b2becd;">Verification ensures your account is secure and protected</p>
+            </div>
+            <div class="feature-card" style="background:rgba(22,36,71,0.8);border-radius:12px;padding:24px;text-align:center;box-shadow:0 0 12px #4ef3ff11;">
+                <div class="feature-icon" style="font-size:2rem;">📧</div>
+                <h3 style="color:#1fd1a1;margin:10px 0 6px 0;">Email Notifications</h3>
+                <p style="color:#b2becd;">Receive important updates and notifications via email</p>
+            </div>
+            <div class="feature-card" style="background:rgba(22,36,71,0.8);border-radius:12px;padding:24px;text-align:center;box-shadow:0 0 12px #4ef3ff11;">
+                <div class="feature-icon" style="font-size:2rem;">✓</div>
+                <h3 style="color:#1fd1a1;margin:10px 0 6px 0;">Access All Features</h3>
+                <p style="color:#b2becd;">Unlock all features after email verification</p>
+            </div>
+            <div class="feature-card" style="background:rgba(22,36,71,0.8);border-radius:12px;padding:24px;text-align:center;box-shadow:0 0 12px #4ef3ff11;">
+                <div class="feature-icon" style="font-size:2rem;">🛡️</div>
+                <h3 style="color:#1fd1a1;margin:10px 0 6px 0;">Prevent Spam</h3>
+                <p style="color:#b2becd;">Verification prevents spam and unauthorized access</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

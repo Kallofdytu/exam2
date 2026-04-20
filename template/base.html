@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookCatalog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .navbar { min-height: 40px; padding: 4px 0; }
+        .navbar-container { padding: 0 12px !important; min-height: 40px !important; }
+        .logo { font-size: 1.2rem !important; }
+        .nav-links { gap: 8px !important; }
+        .nav-links li a, .nav-links li span { font-size: 0.85rem !important; padding: 4px 10px !important; }
+        .add-btn, .logout-btn, .user-badge { font-size: 0.85rem !important; padding: 4px 10px !important; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container" style="display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;">
+            <a href="{% url 'home' %}" class="logo">Библиотека</a>
+            <ul class="nav-links" style="display:flex;align-items:center;list-style:none;margin:0;padding:0;">
+                <li><a href="{% url 'home' %}" style="color:#eaf6fb;text-decoration:none;padding:4px 10px;">Главная</a></li>
+                <li><a href="{% url 'book_list' %}" style="color:#eaf6fb;text-decoration:none;padding:4px 10px;">Книги</a></li>
+                {% if user and user.is_superuser %}
+                <li><a href="/admin/" style="color:#eaf6fb;text-decoration:none;padding:4px 10px;">Admin</a></li>
+                {% endif %}
+                {% if user %}
+                    <li><a href="{% url 'add_book' %}" class="add-btn" style="font-size:0.85rem;padding:4px 10px;">+ Книга</a></li>
+                    <li><a href="{% url 'create_author' %}" class="add-btn" style="font-size:0.85rem;padding:4px 10px;">+ Автор</a></li>
+                    <li><a href="{% url 'create_category' %}" class="add-btn" style="font-size:0.85rem;padding:4px 10px;">+ Категория</a></li>
+                    <li><span class="user-badge" style="font-size:0.85rem;padding:4px 10px;">{{ user.username }}</span></li>
+                    <li><a href="{% url 'logout' %}" class="logout-btn" style="font-size:0.85rem;padding:4px 10px;">Выйти</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="auth-btn primary" style="font-size:0.85rem;padding:4px 10px;">Войти</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer class="footer" style="padding:12px 20px;">
+        <div class="container">
+            <p style="margin:0;font-size:0.9rem;">&copy; 2026 BookCatalog</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная — Библиотека{% endblock %}
+
+{% block content %}
+<section class="hero" style="margin-top:32px;">
+    <div class="hero-content" style="text-align:center;max-width:700px;margin:0 auto;">
+        <div class="subtitle" style="color:#4ef3ff;letter-spacing:0.12em;font-size:1.1rem;margin-bottom:1.5rem;text-transform:uppercase;">
+            — ДОБРО ПОЖАЛОВАТЬ —
+        </div>
+        <h1 style="font-size:3.4rem;font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.1;">Ваша личная<br><span style="color:#1fd1a1;font-style:italic;font-size:2.3rem;">Библиотека</span></h1>
+        <p style="color:#b2becd;font-size:1.13rem;margin:1.5rem 0 2.5rem 0;">Исследуйте мир книг. Находите, читайте и оставляйте отзывы на любимые произведения.</p>
+        <div style="display:flex;gap:18px;justify-content:center;margin-bottom:2.5rem;">
+            <a href="{% url 'book_list' %}" class="cta-btn" style="font-size:1.1rem;min-width:200px;">СМОТРЕТЬ КНИГИ</a>
+        </div>
+    </div>
+</section>
+<section class="stats" id="stats" style="margin-top:18px;">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+        <div class="stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+            <div class="stat-card glass-effect" style="background:rgba(22,36,71,0.8);border-radius:16px;padding:32px 0;text-align:center;box-shadow:0 0 16px #4ef3ff22;">
+                <div class="stat-number" style="color:#4ef3ff;font-size:2.3rem;font-weight:700;">{{ total_books|default:0 }}</div>
+                <div class="stat-label" style="color:#b2becd;font-size:1.1rem;letter-spacing:0.08em;margin-top:8px;">КНИГ</div>
+            </div>
+            <div class="stat-card glass-effect" style="background:rgba(22,36,71,0.8);border-radius:16px;padding:32px 0;text-align:center;box-shadow:0 0 16px #4ef3ff22;">
+                <div class="stat-number" style="color:#4ef3ff;font-size:2.3rem;font-weight:700;">{{ authors_count|length|default:0 }}</div>
+                <div class="stat-label" style="color:#b2becd;font-size:1.1rem;letter-spacing:0.08em;margin-top:8px;">АВТОРОВ</div>
+            </div>
+            <div class="stat-card glass-effect" style="background:rgba(22,36,71,0.8);border-radius:16px;padding:32px 0;text-align:center;box-shadow:0 0 16px #4ef3ff22;">
+                <div class="stat-number" style="color:#4ef3ff;font-size:2.3rem;font-weight:700;">{{ categories_count|default:0 }}</div>
+                <div class="stat-label" style="color:#b2becd;font-size:1.1rem;letter-spacing:0.08em;margin-top:8px;">КАТЕГОРИЙ</div>
+            </div>
+            <div class="stat-card glass-effect" style="background:rgba(22,36,71,0.8);border-radius:16px;padding:32px 0;text-align:center;box-shadow:0 0 16px #4ef3ff22;">
+                <div class="stat-number" style="color:#4ef3ff;font-size:2.3rem;font-weight:700;">{{ reviews_count|default:0 }}</div>
+                <div class="stat-label" style="color:#b2becd;font-size:1.1rem;letter-spacing:0.08em;margin-top:8px;">ОТЗЫВОВ</div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr style="border:0;border-top:1.5px solid #23395d;margin:40px 0 32px 0;">
+<section class="recent-books" style="max-width:1200px;margin:0 auto 32px auto;">
+    <h2 style="color:#eaf6fb;font-size:2rem;font-family:'Cormorant Garamond',serif;margin-bottom:18px;">Последние поступления</h2>
+    <div class="recent-books-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+        {% for book in recent_books %}
+        <div class="book-card glass-effect" style="background:rgba(22,36,71,0.92);border-radius:14px;padding:18px 16px 16px 16px;box-shadow:0 0 12px #4ef3ff11;display:flex;flex-direction:column;align-items:center;">
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="width:110px;height:150px;object-fit:cover;border-radius:10px;box-shadow:0 0 8px #4ef3ff33;margin-bottom:10px;">
+            {% else %}
+                <div style="width:110px;height:150px;display:flex;align-items:center;justify-content:center;background:#162447;border-radius:10px;font-size:2.2rem;color:#4ef3ff;margin-bottom:10px;">📖</div>
+            {% endif %}
+            <div class="book-title" style="color:#eaf6fb;font-size:1.13rem;font-weight:700;margin-bottom:2px;text-align:center;">{{ book.title }}</div>
+            <div class="book-author" style="color:#b2becd;font-size:0.98rem;margin-bottom:4px;text-align:center;">{{ book.author.full_name }}</div>
+            <div class="book-meta" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:4px;">
+                <span class="book-category" style="background:#1fd1a1;color:#101b2b;border-radius:8px;padding:2px 10px;font-size:0.93rem;font-weight:600;">{{ book.category.name }}</span>
+                <span class="book-price" style="color:#4ef3ff;font-size:0.98rem;font-weight:700;">{{ book.price }} сом</span>
+            </div>
+            <a href="{% url 'book_detail' book.id %}" class="cta-btn" style="margin-top:10px;min-width:100px;font-size:0.98rem;">Подробнее</a>
+        </div>
+        {% empty %}
+        <div style="color:#b2becd;font-size:1.1rem;">Нет новых поступлений.</div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

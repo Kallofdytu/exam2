@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - BookCatalog{% endblock %}
+
+{% block content %}
+<section class="profile-section">
+    <div class="container">
+        <div class="profile-header">
+            <h1>My Profile</h1>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-info">
+                <div class="info-card">
+                    <h2>Account Information</h2>
+                    {% if user %}
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Status:</strong> <span class="status-badge">Active</span></p>
+                    {% else %}
+                        <p>User not found</p>
+                    {% endif %}
+                    <div class="profile-actions">
+                        <a href="{% url 'change_password' %}" class="btn btn-primary">Change Password</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-books">
+                <h2>My Books ({{ books_count }})</h2>
+                <div class="books-list">
+                    {% if user_books %}
+                        {% for book in user_books %}
+                            <div class="book-item">
+                                <div class="book-item-info">
+                                    <h4>{{ book.title }}</h4>
+                                    <p><strong>Category:</strong> {{ book.category.name }}</p>
+                                    <p><strong>Price:</strong> ${{ book.price }}</p>
+                                    <small>Added: {{ book.created_at|date:"M d, Y" }}</small>
+                                </div>
+                                <div class="book-item-actions">
+                                    <a href="{% url 'book_detail' book.id %}" class="btn-sm">View</a>
+                                    <a href="{% url 'edit_book' book.id %}" class="btn-sm edit">Edit</a>
+                                    <a href="{% url 'delete_book' book.id %}" class="btn-sm delete">Delete</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-books">You haven't added any books yet. <a href="{% url 'add_book' %}">Add your first book!</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

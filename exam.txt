@@ -1,0 +1,162 @@
+1
+
+RU: Что такое Django?
+TJ: Django чист?
+
+фремворки сатхи баланд дар python барои сохтани веб caйтхо мебошад
+
+
+
+2
+
+RU: Что такое архитектура MVT в Django?
+TJ: Архитектураи MVT дар Django чист?
+
+M = model V = view T = template
+
+
+3
+
+RU: Чем MVT отличается от MVC?
+TJ: Фарқи MVT аз MVC дар чист?
+
+Дар MVC Controller ҳаст дар Django View вазифаи онро иҷро мекунад.
+
+
+4
+
+RU: В чем разница между project и app в Django?
+TJ: Фарқи project ва app дар Django чист?
+
+Project = тамоми сайт App = модул мегуйеи ки чикор кунад ба кучо равад
+
+
+5
+
+RU: Как обрабатывается request в Django?
+TJ: Request дар Django чӣ гуна коркард мешавад?
+
+
+url > view > model > template > response
+
+
+6
+
+RU: Что такое HttpRequest и HttpResponse?
+TJ: HttpRequest ва HttpResponse чистанд?
+
+HttpResponse чавоб  HttpRequest дархост
+
+
+7
+
+RU: Что такое view в Django и какие виды view существуют?
+TJ: View дар Django чист ва кадом намудҳои view мавҷуданд?
+
+View  функсия ё класс мисол FBV ё CBV
+
+
+8
+
+RU: Для чего нужны templates в Django?
+TJ: Templates дар Django барои чӣ лозиманд?
+
+Templates файлхои HTML
+
+
+9
+
+RU: Как передать данные из view в template?
+TJ: Маълумотро аз view ба template чӣ гуна мегузаронанд?
+
+Бо context дар render
+
+
+10
+
+RU: Что такое template tags и template filters?
+TJ: Template tags ва template filters чистанд?
+
+Tags мантик Filters тағйир бо {% ..... %}
+
+
+11
+
+RU: В чем разница между static files и media files?
+TJ: Фарқи static files ва media files дар чист?
+
+Static  файлҳои css ё js  Media  файлҳое ки  килент дохил мекунад мисол сурат 
+
+
+12
+
+RU: Что такое model в Django?
+TJ: Model дар Django чист?
+
+Model = таблицаи база
+
+
+
+13
+
+RU: Что такое migrations и зачем они нужны?
+TJ: Migrations чистанд ва барои чӣ лозиманд?
+
+Migrations = тағйири база
+
+
+14
+
+RU: Какие виды связей между моделями вы знаете?
+TJ: Кадом намудҳои робита байни model-ҳо вуҷуд доранд?
+
+OneToOne ForeignKey ManyToMany
+
+
+15
+
+RU: Что такое CRUD и как он реализуется через FBV?
+TJ: CRUD чист ва он тавассути FBV чӣ гуна амалӣ мешавад?
+
+C = сохтан R =  хондан U = навсозӣ D = нест кардан
+
+
+16
+
+RU: Чем отличаются методы all(), get(), filter(), exclude()?
+TJ: Методҳои all(), get(), filter(), exclude() аз ҳам чӣ фарқ доранд?
+
+all() get() filter() exclude()
+
+
+17
+
+RU: Что такое reverse relation в Django ORM?
+TJ: Reverse relation дар Django ORM чист?
+
+Reverse relation = алоқаи баракс
+
+
+18
+
+RU: Для чего нужны select_related() и prefetch_related()?
+TJ: select_related() ва prefetch_related() барои чӣ лозиманд?
+
+
+select_related() prefetch_related() = оптимизатсия
+
+
+19
+
+RU: Что делают aggregate() и annotate()?
+TJ: aggregate() ва annotate() чӣ кор мекунанд?
+
+aggregate() = ҳисобот кардан  annotate() — барои як таблица
+
+
+20
+
+RU: Как работают register, login, logout, email confirmation, reset password и change password в Django?
+TJ: Register, login, logout, email confirmation, reset password ва change password дар Django чӣ гуна кор мекунанд?
+
+register нав даромад  login агар дощта бошед logout баромад аз аккоунт   email електроная почта reset рестарт кардан password change паролро алищ кадан
